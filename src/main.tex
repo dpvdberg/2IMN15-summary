@@ -339,27 +339,74 @@ heightrounded,
     \emph{Life cycle control}: Control over actions in life cycle like switching on/off.
     \emph{Behavioral control}: Controlling the behavior of a device or software element when it `runs'.
 
-    \paragraph{Architeture alternatives}
+    \paragraph{Architecture alternatives}
     Take into account life cycles of devices/services/applications, and requirements set by all stakeholders.
+    Architecture/deployment decisions and views are obtained from scenarios.
+    \begin{itemize}
+        \item Integration: put functions together on one device
+        \item Distribution: put functions on different devices
+        \item Virtualization: decoupling of logical and physical representation
+        Improves simplicity, generalization, flexibility, cost, lower performance.
+t    \end{itemize}
+
+    Depends on location, form factor, numbers, energy, cost, system complexity, component availability, software/framework availability.
+
 
     \paragraph{Communication}
+    Direct communication between communicating parties over a comm. protocol that they together implement.
+
+    Reduces latency.
+
+    Indirect:
     \begin{itemize}
         \item \emph{Broker}: A component that handles and translates calls between two or more parties.
         \item \emph{Proxy}: A component that acts on behalf of another component, implementing the same interface, and sometimes caching.
         \item \emph{Store}: One component leaves data and another one picks it up.
     \end{itemize}
+    Reduces dependencies between parties, w.r.t. time and space.
 
     \begin{itemize}
         \item \emph{Push}: Control flow and data go in same direction (`call-back', `event driven').
-        \item \emph{Pull}: Control flow and data go in poosite direction (`call', `polling')
+        Reduces latency, needs administration at sender.
+        \item \emph{Pull}: Control flow and data go in opposite direction (`call', `polling')
+        Obtain data when required, increases latency.
     \end{itemize}
 
-    \paragraph{Privacy, safety and security}
+    \paragraph{Data}
+    Data storage and handling determined by privacy concerns, need for collecting evidence, cost concerns, value of data.
+
+    \paragraph{Application and control logic}
+    Location of application logic and ocntrol logic depends on privacy concerns, latency requirements, used framework, performance, complexity.
+
+    See p. 35 in slides for a summery of all options and their consequences on requirements.
+
+    \subsection{Privacy, safety and security}
     \begin{itemize}
         \item \emph{Privacy}: control over personal information.
         \item \emph{Safety}: Freedom from danger or risk on injury resulting from recognized but potentially hazardous events.
         \item \emph{Security}: Regulating access to assets according to some policy.
     \end{itemize}
 
+    \subsection{Reference model}
+    \emph{Reference model} defines generically what binds architectures (?) together:
+    \begin{itemize}
+        \item \emph{Domain model}: relevant concepts and relations in IoT
+        \item \emph{Information model}: data structures of the domain model elements
+        \item \emph{Functional model}: (generic) operations
+        \item \emph{Communication model}: communication interactions between entities
+    \end{itemize}
 
+    \emph{Reference architecture}: an architecture description that takes this reference model as starting point.
+
+    Concerns and objectives:
+    \begin{itemize}
+        \item Re-use resources across application domains
+        \item A set of support services
+        \item Different abstraction levels
+        \item Sensing and actuating can assume roles in different applications
+        \item Trust, security, privacy, safety
+        \item Include different service delivery models
+        \item Simple integration/management
+        \item Life cycle support
+    \end{itemize}
 \end{document}
