@@ -409,4 +409,149 @@ t    \end{itemize}
         \item Simple integration/management
         \item Life cycle support
     \end{itemize}
+
+    \section{The Things}
+
+    \paragraph{Resource limitations}
+    \begin{itemize}
+    \item Memory: available flash and RAM
+    \item Processor: Mhz, instruction set, address width, power management
+    \item Communication: transceiver power, bps, protocol complexity
+    \item Energy: available joules and how they are replenished
+    \end{itemize}
+
+    \paragraph{Device classifications}
+    Three classes representing memory limitations:
+    \begin{itemize}
+        \item C0: dependent on proxies for secure internet inclusion
+        \item C1: only low resource protocols
+        \item C2: can run most internet protocols
+    \end{itemize}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/paste-20201117123757.png}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/paste-20201117123806.png}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/paste-20201117124401.png}
+    \end{figure}
+
+    \paragraph{Concerns and management}
+    Can it
+    \begin{itemize}
+        \item join a network?
+        \item be configured?
+        \item be updated (over the air)?
+        \item run IP?
+        \item secure itself?
+    \end{itemize}
+
+    \subsection{What is new in IoT}
+    \begin{itemize}
+        \item
+        There are \emph{many} things.
+        \begin{itemize}
+            \item
+            We have \#things / person $>>$ 1.
+            \item Connected/talk to each other
+            \item
+            Autonomy of things;
+            self management and self healing.
+            \item
+            Scalability: many things sharing your wireless LAN.
+        \end{itemize}
+        \item
+        Things have limitations
+        \begin{itemize}
+            \item low processing power
+            \item memory
+            \item low capacity network
+            \item battery operated
+            \item embedded: no UI
+        \end{itemize}
+        \item
+        Enable new applications because of the large number of things and far-reaching locations.
+        \item
+        Scale and locations come with complex concerns; every IoT device is very different.
+    \end{itemize}
+
+    \paragraph{WSN vs. IoT vs. M2M}
+    IoT:
+    \begin{itemize}
+        \item System
+
+        is platform, open, extensible, interoperable
+        \item Protocol
+
+        IP and higher to endpoints and on top of low resource networks
+        \item Applications
+
+        Use IP protocols and developed seperately
+        \item Management
+
+        Explicit, use IP management protocols.
+    \end{itemize}
+    WSN:
+    \begin{itemize}
+        \item System
+
+        .. is the application: built with a specific application
+        \item Protocol
+
+        application oriented
+        \item Applications
+
+        Developed and optimized along with entire system
+        \item Management
+
+        Implicit, part of application.
+    \end{itemize}
+    M2M:
+    \begin{itemize}
+        \item System
+
+        .. is the application, closed.
+        \item Protocol
+
+        standardized, for low-resource networks.
+        \item Applications
+
+        Classes, developed and optimized along with entire system.
+        \item Management
+
+        Explicit, built into protocols.
+    \end{itemize}
+
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
