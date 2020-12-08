@@ -529,6 +529,246 @@ t    \end{itemize}
         Explicit, built into protocols.
     \end{itemize}
 
+    \section{Networks}
+
+
+    \subsection{Physical organization}
+
+    General architecture:
+    \begin{itemize}
+        \item Moving clusters of nodes with sensing capability
+        \item Static ambient nodes attaching to clusters
+        \item IP-based network with wide-area coverage
+    \end{itemize}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/paste-20201208121214.png}
+    \end{figure}
+
+    \subsection{Internet Protocol}
+
+    \begin{itemize}
+        \item Physical:  send bits on medium
+        \item MAC: managing medium access
+        \item Network: sender to receiver/routing
+        \item Transport: break messages into packets, delivery guarantees
+        \item Session, Presentation, Application merged in one application layer for Internet Protocol
+    \end{itemize}
+
+    \emph{Hourglass of IP}: a unified protocol and naming scheme to enable communication between any pair of devices (diverse physical layers -> ip -> diverse applications).
+
+    \emph{Essence of IoT}: a unified protocol and naming scheme to enable communication between any pair of things.
+
+    Setback: IP endpoints should always be active and reachable.
+    Devices cannot always guarantee this; passive nodes/batery-less nodes/duty cycling etc.
+    We need technology to solve this (gateways).
+
+    \subsection{IEEE local area networks}
+
+    Network approaches:
+    \begin{itemize}
+        \item Physical neighbors: shared medium or point-to-point
+        \item Switching: layer two
+        \item Connecting networks: layer 3
+        \item Packet oriented
+        \item Full network: full connectivity
+    \end{itemize}
+
+    Wired: nodes can be powered through network, difficult to scale.
+
+    Wireless: typical for really large numbers, inherently unreliable medium.
+
+    See slides for an overview of different IEEE 802 groups.
+
+    \subsection{Medium sharing}
+
+    \emph{Shared medium}: can be a wire/bus but also wireless connection.
+
+    Techniques applied for wireless:
+    \begin{itemize}
+        \item FDMA: multiple channels.
+        \item TDMA: division in timeslots, introduces need for time synchronization
+
+        Potentially wasteful when slots are not used.
+
+        \item Master-slave
+        \item CSMA: medium access protocols, uses channel assessment
+
+        CSMA/CD, for wired: sense carrier, transmit and monitor for collisions (send jamming signal if another transmission comes in), complete transmission.
+
+        CSMA/CR, for wired: sense carrier, transmit and monitor for collision (priority based choice), complete transmission.
+
+        CSMA/CA, for wireless: transmission power is low, introduces need for collision avoidance instead of monitoring.
+        Uses acknowledgement messages.
+
+        Collisions due to unfortunate timing or due to hidden nodes.
+        This can be solved using Request To Send signals.
+
+        \item CDMA: concurrent access of the medium, due to coded packets, requires orthogonal codes
+
+        \item \emph{Beacon}: periodic packet broadcasts, that enforce a globally slotte structure of the medium access.
+        Can also be used for clock synchronization.
+        See p. 35 for 802.11e example.
+    \end{itemize}
+
+    \subsection{Energy reduction}
+
+    Techniques:
+    \begin{itemize}
+        \item Asymmetry: low-power nodes 1 hop away from well-powered infrastructure
+
+        \item Trade connectivity for energy: control transceive power.
+        \item Duty cycling
+
+        We use strict time synchronization, or let sender send wakeup messages, or switc transceiver on sufficiently long to guarantee meeting the sender.
+
+        \item Demand driven: event driven control of radio
+        \item Push/pull: let low power partnet always take initiative (so that it never has to wait)
+
+        Push/pull by node/environment.
+        Solutions: aligh communication with periodic synchronization of the node with ints environment; provide always-on environment for demand driven radio control.
+
+        \item Trade power for range and throughput.
+    \end{itemize}
+
+    \subsection{Wide area initiatives}
+
+    Tradeoffs: communication range, data rate, transceiver power, spectrum usage.
+
+    \emph{LoRaWAN}
+
+    %TODO: figure
+
+    LoRaWAN: star topology, uses Aloha Mac protocol, adaptive data rate managed by gateway.
+    Three classes of devices.
+
+    Services: geolocation and identification and security.
+
+
+    \subsection{Metrics}
+
+    \begin{itemize}
+        \item Throughput: number of bytes per time unit
+        \item Latency or delay: time difference in initiation of a transmission and the start of the receipt
+        \item Jitter: variations in time
+        \item Fairness: bound on delay in access to a transmission channel
+        \item Overhead
+        \item Scalability: as utilization or as dimensioning (scale number of gateways of LoRaWAN with number of low-power nodes)
+        \item Predictability
+        \item Reliability: resilience against interference
+        \item Power
+        \item Range
+    \end{itemize}
+
+    See p. 54 for table.
+
+    \section{OpenAIS example}
+
+
+    \subsection{Internet of Lights}
+
+    \emph{Technology convergence}: Dumb to smart (e.g. mobile phones).
+
+    \emph{Lightning system evolution}: on gartner scale, lightning systems are reaching the plateau of productivity
+
+    Approaches:
+    \begin{itemize}
+        \item Cloud-based: excellent services, high latency, privacy concerns
+        \item Edge-computing: poor services environment, low latency, good price
+        \item OpenAIS: allows local controls, integration with cloud possible.
+        OpenAIS is combination of cloud- and edge-based computing.
+    \end{itemize}
+
+
+    \emph{OpenAIS} is a standardization attempt for IoL (Internet of Light) vision.
+    Light architecture for office buildings.
+
+    Bullshit video die nergens over gaat, werd blijkbaar ook gebruikt in glow.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/paste-20201208141044.png}
+    \end{figure}
+
+    \emph{Gateway}: connect legacy networks to OpenAIS
+
+    \emph{Luminaire}: device with one or more LED drivers
+
+    \emph{Sensor}: device wiht only sensor on
+
+    \emph{Area controller}: device with only computation and networking capabilities
+
+    \emph{Routers and switches}: basic networking core
+
+    More detailed view:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/paste-20201208141151.png}
+    \end{figure}
+
+    \emph{OpenAIS device classes}
+    \begin{itemize}
+        \item \emph{Low resource devices}: low power cpu, limited OS, etc.
+        \item \emph{Medium resource devices}: standard embedded device with on-chip flash and RAM, real time kernel
+        \item \emph{Full resource devices}: standard OS like Linux, state of the art CPU, external RAM
+    \end{itemize}
+
+    \emph{Application layer functions}: high level functionality needed for lightning, and gateway for unified behavior.
+    \begin{itemize}
+        \item Sense: detect changes in environment
+        \item Actuate:
+        \item Control: implement lightning algorithm
+        \item DataCollect: collect data from sensors etc
+        \item Group:
+        \item Scene: specific scenarios
+        \item Gateway: legacy systems
+    \end{itemize}
+
+    \emph{Infrastructure layer functions}: these functions take care of low level platform services.
+    \begin{itemize}
+        \item Application layer function
+        \item Discover
+        \item Communication
+        \item Update
+        \item Security
+        \item Configuration
+        \item DeviceContainer
+    \end{itemize}
+
+    OpenAIS uses the \emph{Sensor-Controller-Actuator} model
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/paste-20201208141824.png}
+    \end{figure}
+
+    \emph{Function interfaces}
+    \begin{itemize}
+        \item IControl
+        \item IData
+        \item IConfig
+        \item IDiscover
+    \end{itemize}
+
+    \emph{Control function}s give flexible distribution of control.
+    \emph{Control stacking}: control functions may be stacked, leading to different levels of control.
+    E.g.\ external energy management: max 60\% brightness sent to other controllers.
+
+    \emph{LWM2M} secure direct unicast communication between field devices.
+
+    \emph{Low power radio access point}: provides access to a wireless IPv6 network that uses a low-power wireless protocol (by means of border router and linux host).
+
+    \emph{Object data model}: illustrates sytem resources in a structured fashion.
+    Resource and object definitions are described, together with default device behaviour relating to endpoint discovery etc.
+
+    \emph{OpenAIS group}: formed by sharing a group vector.
+    Variety of use cases, e.g.\ sensor shares data with relevant Objects.
+
+    \emph{OpenAIs group communication (OGC)}
+    Support the above.
+    Allow multicast using OGC.
+    OGC reliability: increased w.r.t IPv6 UDP multicast.
+
 
 \end{document}
 
